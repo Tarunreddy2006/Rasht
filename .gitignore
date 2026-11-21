@@ -1,0 +1,68 @@
+# Node & Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Android & Gradle Build Artifacts
+android/.gradle/
+android/app/build/
+android/build/
+android/capacitor-cordova-android-plugins/build/
+android/lint/
+.gradle/
+build/
+
+# Local Environment & Secrets (Confidential)
+android/local.properties
+local.properties
+.env
+.env.*
+*.env
+*.properties.local
+
+# Keystores & Signing Keys (Confidential)
+*.jks
+*.keystore
+*.p12
+*.key
+*.pem
+*.pkcs12
+
+# Database & SQLite files (Confidential)
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Binaries & Outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*.aar
+
+# IDE & Editor caches
+.idea/
+*.iml
+.vscode/
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+
+# OS specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Capacitor copied public assets (generated from www on build / sync)
+android/app/src/main/assets/public
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json

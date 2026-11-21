@@ -1,0 +1,8 @@
+{
+  "appId": "com.personalfinance.app",
+  "appName": "Rasht",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

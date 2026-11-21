@@ -1,0 +1,18 @@
+{
+  "name": "personal-finance-intelligence",
+  "version": "1.0.0",
+  "description": "Private Android Personal Financial Intelligence",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Building static assets...'"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/core": "^6.2.0",
+    "chart.js": "^4.6.1",
+    "jspdf": "^4.2.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0"
+  }
+}
