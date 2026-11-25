@@ -25,13 +25,27 @@ jobs:
         uses: android-actions/setup-android@v4
 
       - name: Install Android platform
-        run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0" "emulator" "system-images;android-34;google_apis;x86_64"
 
       - name: Run unit tests and assemble debug APK
         working-directory: android
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon testDebugUnitTest assembleDebug
+
+      
+      - name: Launch app in Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            cd android
+            chmod +x gradlew
+            ./gradlew --no-daemon connectedDebugAndroidTest
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
