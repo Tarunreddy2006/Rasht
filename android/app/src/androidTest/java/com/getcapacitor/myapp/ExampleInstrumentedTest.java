@@ -3,6 +3,9 @@ package com.getcapacitor.myapp;
 import static org.junit.Assert.*;
 
 import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
+import com.personalfinance.app.MainActivity;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
@@ -21,6 +24,17 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.getcapacitor.app", appContext.getPackageName());
+        assertEquals("com.personalfinance.app", appContext.getPackageName());
     }
+
+    @Test
+    public void mainActivityLaunchesOnAndroid() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Activity activity = InstrumentationRegistry.getInstrumentation().startActivitySync(intent);
+        assertNotNull("Rasht MainActivity should start", activity);
+        activity.finish();
+    }
+
 }
