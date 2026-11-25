@@ -149,9 +149,11 @@ class FinanceNotificationListener : NotificationListenerService() {
                 packageName == "com.truecaller" ||
                 packageName == "com.microsoft.android.smsorganizer"
 
-        val isPhonePe = packageName == "com.phonepe.app"
+        val isFinanceApp = ParserRegistry.isSupportedPackage(packageName)
 
-        if (!isMessagingApp && !isPhonePe) {
+        // Listen to all known finance apps (Google Pay, PhonePe, Paytm, BHIM and banks),
+        // while continuing to accept supported SMS inbox applications.
+        if (!isMessagingApp && !isFinanceApp) {
             return
         }
 
@@ -234,28 +236,9 @@ class FinanceNotificationListener : NotificationListenerService() {
         val subText = extractedTexts["subText"]
             ?: extractedTexts["summaryText"]
 
-        // Determine if this is an SMS or messaging app
+        // Reuse the source classification above; do not redeclare isMessagingApp.
         val isRecognizedPackage = ParserRegistry.isSupportedPackage(packageName)
-        val isMessagingApp = packageName.contains("messaging", ignoreCase = true) ||
-                packageName.contains("mms", ignoreCase = true) ||
-                packageName.contains("sms", ignoreCase = true) ||
-                packageName == "com.google.android.apps.messaging" ||
-                packageName == "com.samsung.android.messaging" ||
-                packageName == "com.android.mms" ||
-                packageName == "com.oneplus.mms" ||
-                packageName == "com.coloros.mms" ||
-                packageName == "com.heytap.mms" ||
-                packageName == "com.miui.sms" ||
-                packageName == "com.vivo.mms" ||
-                packageName == "com.bbk.mms" ||
-                packageName == "com.truecaller" ||
-                packageName == "com.microsoft.android.smsorganizer"
-
-        val isPhonePe = packageName == "com.phonepe.app"
-
-        // STRICT SCOPE: Only monitor SMS messages and PhonePe notifications.
-        // Ignore all other application notifications completely.
-        if (!isMessagingApp && !isPhonePe) {
+        if (!isMessagingApp && !isRecognizedPackage) {
             return
         }
 
